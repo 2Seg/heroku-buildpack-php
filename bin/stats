@@ -1,0 +1,13 @@
+#!/bin/bash
+
+### PECL stats
+echo "Downloading PECL stats extension"
+pecl install stats
+
+echo "Enabling stats extension"
+BUILD_DIR=$1
+ln -s $BUILD_DIR/.heroku /app/.heroku
+export PATH=/app/.heroku/php/bin:$PATH
+bash ./install
+cd
+echo "extension=stats.so" >> /app/.heroku/php/etc/php/php.ini
